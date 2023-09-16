@@ -31,4 +31,10 @@ class PassengersRepository
         $passengers = Passengers::all();
         return $passengers;
     }
+
+    public function getPassenger($id)
+    {
+        $passenger = Passengers::where('id', $id)->first();
+        return $passenger;
+    }
 }
