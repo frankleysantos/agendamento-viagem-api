@@ -3,7 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CitiesController;
 
 Route::group([
-    'prefix' => 'auth/noticia'
+    'prefix' => 'auth/noticia',
+    'middleware' => 'auth'
 ], function ($router) {
     Route::post('/store', [CitiesController::class, 'store']);
     Route::post('/update/{id}', [CitiesController::class, 'update']);

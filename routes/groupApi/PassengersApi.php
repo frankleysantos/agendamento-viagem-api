@@ -3,7 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PassengersController;
 
 Route::group([
-    'prefix' => 'passengers'
+    'prefix' => 'passengers',
+    'middleware' => 'auth'
 ], function ($router) {
     Route::post('/store', [PassengersController::class, 'storeOrUpdate']);
     Route::post('/update/{id}', [PassengersController::class, 'storeOrUpdate']);

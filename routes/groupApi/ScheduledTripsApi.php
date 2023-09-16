@@ -3,7 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ScheduledTripsController;
 
 Route::group([
-    'prefix' => 'scheduledTrips'
+    'prefix' => 'scheduledTrips',
+    'middleware' => 'auth'
 ], function ($router) {
     Route::post('/store', [ScheduledTripsController::class, 'storeOrUpdate']);
     Route::post('/update/{id}', [ScheduledTripsController::class, 'storeOrUpdate']);

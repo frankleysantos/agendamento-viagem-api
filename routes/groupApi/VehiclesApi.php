@@ -3,7 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VehiclesController;
 
 Route::group([
-    'prefix' => 'vehicles'
+    'prefix' => 'vehicles',
+    'middleware' => 'auth'
 ], function ($router) {
     Route::post('/store', [VehiclesController::class, 'storeOrUpdate']);
     Route::post('/update/{id}', [VehiclesController::class, 'storeOrUpdate']);

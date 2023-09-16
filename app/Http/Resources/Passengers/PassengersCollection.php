@@ -22,8 +22,6 @@ class PassengersCollection extends ResourceCollection
     
     public function toArray($request)
     {
-        return [
-            'passengers' => $this->formattedCollection::collection($this->collection)
-        ];
+        return $this->formattedCollection::collection($this->collection);
     }
 }
