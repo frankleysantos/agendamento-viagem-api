@@ -34,4 +34,10 @@ class PassengersController extends Controller
         $passenger = $this->passengersRepository->getPassenger($id);
         return response()->json(new PassengersResource($passenger));
     }
+
+    public function delete($id)
+    {
+        $passenger = $this->passengersRepository->deletePassenger($id);
+        return response()->json($passenger);
+    }
 }

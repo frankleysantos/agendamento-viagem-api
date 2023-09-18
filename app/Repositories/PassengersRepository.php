@@ -37,4 +37,10 @@ class PassengersRepository
         $passenger = Passengers::where('id', $id)->first();
         return $passenger;
     }
+
+    public function deletePassenger($id)
+    {
+        $passenger = Passengers::where('id', $id)->delete();
+        return $passenger;
+    }
 }
