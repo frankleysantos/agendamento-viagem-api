@@ -1,0 +1,87 @@
+version: "3.7"
+
+networks:
+    laravel:
+        driver: bridge
+
+services:
+    #REDIS
+    tisaude_redis:
+        image: redis
+        container_name: "tisaude_redis"
+        ports:
+            - 6379:6379
+        volumes:
+            - redis_data:/data
+        networks:
+            - laravel
+    # MYSQL
+    database:
+        container_name: tisaude_database
+        image: mysql:5.7
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: tisaude
+            MYSQL_USER: tisaude
+            MYSQL_PASSWORD: tisaude
+        volumes:
+            - ./mysql/:/var/lib/mysql/
+        networks:
+            - laravel
+    viva:
+        container_name: tisaude_viva
+        build: ./viva/
+        volumes:
+            - ./viva/:/var/www/html/
+        ports:
+            - "8001:80"
+        networks:
+            - laravel
+        depends_on:
+            - tisaude_redis
+            - database
+    app:
+        container_name: tisaude_app
+        build: ./app/
+        volumes:
+            - ./app/:/var/www/html/
+        ports:
+            - "8002:80"
+        networks:
+            - laravel
+        depends_on:
+            - tisaude_redis
+            - database
+
+
+    app_api:
+        container_name: appapi
+        build:
+            context: ./app-api
+        volumes:
+            - ./app-api:/var/www/html
+        ports:
+            - "8000:80"
+        networks:
+            - laravel
+        depends_on:
+            - database
+            - tisaude_redis
+
+    api_agenda_viagem:
+        container_name: apiagendaviagem
+        build:
+            context: ./agenda/api-agenda-viagem
+        volumes:
+            - ./agenda/api-agenda-viagem:/var/www/html
+        ports:
+            - "8005:80"
+        networks:
+            - laravel
+        depends_on:
+            - database
+            - tisaude_redis
+volumes:
+    redis_data:
+    mysql:
