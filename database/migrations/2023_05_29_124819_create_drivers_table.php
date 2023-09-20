@@ -14,8 +14,8 @@ return new class extends Migration
 			$table->increments('id');
 			$table->string('name');
 			$table->string('telephone');
-			$table->enum('cnh_category', array('A', 'B', 'C', 'D', 'E'));
-			$table->string('cnh_number');
+			$table->enum('cnh_category', array('A', 'B', 'AB', 'C', 'AC', 'D', 'AD', 'E', 'AE'));
+			$table->string('cnh_number')->unique();
 			$table->timestamps();
 			$table->softDeletes();
 		});

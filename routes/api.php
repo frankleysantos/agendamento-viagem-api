@@ -5,3 +5,4 @@ require base_path('routes/groupApi/DriversApi.php');
 require base_path('routes/groupApi/PassengersApi.php');
 require base_path('routes/groupApi/ScheduledTripsApi.php');
 require base_path('routes/groupApi/IbgeApi.php');
+require base_path('routes/groupApi/StatesCitiesApi.php');

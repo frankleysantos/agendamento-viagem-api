@@ -29,45 +29,6 @@ services:
             - ./mysql/:/var/lib/mysql/
         networks:
             - laravel
-    viva:
-        container_name: tisaude_viva
-        build: ./viva/
-        volumes:
-            - ./viva/:/var/www/html/
-        ports:
-            - "8001:80"
-        networks:
-            - laravel
-        depends_on:
-            - tisaude_redis
-            - database
-    app:
-        container_name: tisaude_app
-        build: ./app/
-        volumes:
-            - ./app/:/var/www/html/
-        ports:
-            - "8002:80"
-        networks:
-            - laravel
-        depends_on:
-            - tisaude_redis
-            - database
-
-
-    app_api:
-        container_name: appapi
-        build:
-            context: ./app-api
-        volumes:
-            - ./app-api:/var/www/html
-        ports:
-            - "8000:80"
-        networks:
-            - laravel
-        depends_on:
-            - database
-            - tisaude_redis
 
     api_agenda_viagem:
         container_name: apiagendaviagem

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Drivers;
+namespace App\Http\Resources\Cities;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class DriversCollection extends ResourceCollection
+class CitiesCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,9 +16,8 @@ class DriversCollection extends ResourceCollection
 
     public function __construct($resource)
     {
-        $this->formattedCollection = DriversResource::class;
-
-        parent::__construct($resource->all());
+        $this->formattedCollection = CitiesResource::class;
+        parent::__construct($resource);
     }
     public function toArray($request)
     {
